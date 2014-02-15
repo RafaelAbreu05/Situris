@@ -1,0 +1,38 @@
+﻿<!-- Example of a Tomcat configuration file for this application. -->
+
+<!-- The 'YOUR_MYSQL_...' items refer to a MySQL account. The given values are phony. Please change them. -->
+
+<!-- Assumes MySQL is running on the default port 3306. Please change if necessary. -->
+
+<!-- Maps a URL context to a location on your file system: -->
+<Context docBase="/Users/andreiasilva/Desktop/Programas Auxiliares/eclipse/SITURIS" reloadable="true">
+
+ <!-- How Tomcat should make a Datasource, for the exclusive use of the application: -->
+ <Resource
+   name="jdbc/situris"
+   auth="Container"
+   type="javax.sql.DataSource"
+   username="root"
+   password="1234"
+   driverClassName="com.mysql.jdbc.Driver"
+   url="jdbc:mysql://localhost:3306/situris?useServerPrepStmts=false"
+   maxActive="10"
+   maxIdle="5"
+ />
+
+ <!-- How Tomcat should look for user names and passwords, when confirming user credentials during login: -->
+ <Realm
+  className="org.apache.catalina.realm.JDBCRealm"
+  connectionURL="jdbc:mysql://localhost:3306/situris"
+  digest="SHA-1"
+  driverName="com.mysql.jdbc.Driver"
+  roleNameCol="Role"
+  userCredCol="Password"
+  userNameCol="username"
+  userRoleTable="userrole"
+  userTable="users"
+  connectionName="root"
+  connectionPassword="1234"
+  debug="99"
+ />
+</Context>
